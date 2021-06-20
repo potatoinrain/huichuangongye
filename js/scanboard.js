@@ -123,7 +123,6 @@ $(function(){
 	    fillOpacity: 0.35 //填充透明度
 	});
 	
-	
 	//高坪工业园
 	var circle1 = new AMap.Circle({
 	    center: new AMap.LngLat("106.911704", "27.815316"), // 圆心位置
@@ -172,6 +171,7 @@ $(function(){
 	myMap.add(circle3)
 	myMap.add(circle4)
 	
+	//覆盖物事件
 	circle.on('click', function(){
 		show_list()
 	})
@@ -241,6 +241,7 @@ $(function(){
 	  ]
 	  });
 
+	//产值
 	var produceChart = echarts.init(document.getElementById('produceChart'));
 	$("#produceSeanson").on("click", function(){
 		$("#produceSeanson").addClass("selected");
@@ -772,7 +773,7 @@ $(function(){
 	})
 	$("#produceSpeedSeanson").click()
 
-	//运单状态文字滚动
+	//文字滚动
 	$('#FontScroll').FontScroll({time: 3000,num: 1});
 
 	setTimeout(function(){
@@ -1321,6 +1322,22 @@ $(function(){
     });
 
 
+	var url = "http://huichuan.gmh.zxytinfo.com/app/company/datas";
+	$.ajax({
+	    url: url,
+	    type: "POST",
+	    dataType: "json",
+	    success: function(data) {
+			console.log(data);
+			return data;
+	    }
+	});
+	
+	// <li>
+	// 	<p>粤A3456344</p>
+	// 	<span class="work">工作</span>
+	// </li>
+	
     //车辆信息工作时间表
     //模拟数据
     var carData = [

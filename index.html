@@ -5,64 +5,498 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
 <title>汇川智慧工业服务云</title>
 <link rel="stylesheet" type="text/css" href="css/reset.css" />
-<link rel="stylesheet" type="text/css" href="css/scanboardLogin.css" />
+<link rel="stylesheet" type="text/css" href="css/scanboard.css" />
 <link rel="stylesheet" type="text/css" href="css/animsition.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.shCircleLoader.css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.shCircleLoader-min.js"></script>
 </head>
 <body>
-	<div class="wp animsition">
-		<div class="boardLogin">
-			<a href="#" class="logo">
-				<img src="images/loginLogo.png">
-			</a>
-			<form>
-				<div class="inpGroup">
-					<span class="loginIco1"></span>
-					<input type="text" name="" placeholder="请输入您的用户名">
+	<div id="loader"></div>
+	<script type="text/javascript">
+		$('#loader').shCircleLoader({color: "#00deff"});
+	</script>
+	<!--Top Start!-->
+	<div class="scanboardWp animsition">
+		<div id="top">
+			<div class="wp clearfix">
+				<div class="left pageTit">
+					<a class="summaryBtn" href="javascript:;"></a>
 				</div>
-				<div class="prompt">
-					<p class="error">用户名错误或不存在</p>
+				<div class="center topLogo">
+					<a href="#">汇川智慧工业服务云</a>
+				</div>
+				<div class="right topBar">
+					<div class="topTime">时间加载中...</div>
+				</div>
+			</div>
+		</div>
+		<!--Top End!-->
+		
+		<!--Main Start!-->
+		<div id="main" class="wp clearfix">
+			<div class="left">
+				<div class="item waybill left-box">
+					<div class="itemTit">
+						<span class="border-yellow itemTitName">产值占比</span>
+						<span class="dateTypeChoose selected" style="cursor: pointer;float: right;margin-right: 15px;" id="produceSeanson">季度</span>
+						<span class="dateTypeChoose selected" style="float: right;">/</span>
+						<span class="dateTypeChoose" style="cursor: pointer;float: right;" id="produceYear">年</span>
+					</div>
+					<div class="itemCon" style="padding: 10px 0 0;">
+						<div id="produceChart" style="width: 100%;height: 100%;">
+						</div>
+					</div>
+				</div>
+
+				<div class="item waybill left-box">
+					<div class="itemTit">
+						<span class="border-yellow itemTitName">产值增加</span>
+						<span class="dateTypeChoose selected" style="cursor: pointer;float: right;margin-right: 15px;" id="produceAddSeanson">季度</span>
+						<span class="dateTypeChoose selected" style="float: right;">/</span>
+						<span class="dateTypeChoose" style="cursor: pointer;float: right;" id="produceAddYear">年</span>
+					</div>
+					<div class="itemCon" style="padding: 10px 0 0;">
+						<div id="produceAddChart" style="width: 100%;height: 100%;">
+						</div>
+					</div>
 				</div>
 				
-				<div class="inpGroup">
-					<span class="loginIco2"></span>
-					<input type="password" name="" placeholder="请输入您的密码">
+				<div class="item waybill left-box">
+					<div class="itemTit">
+						<span class="border-yellow itemTitName">产值增速</span>
+						<span class="dateTypeChoose selected" style="cursor: pointer;float: right;margin-right: 15px;" id="produceSpeedSeanson">季度</span>
+						<span class="dateTypeChoose selected" style="float: right;">/</span>
+						<span class="dateTypeChoose" style="cursor: pointer;float: right;" id="produceSpeedYear">年</span>
+					</div>
+					<div class="itemCon" style="padding: 10px 0 0;">
+						<div id="produceSpeedChart" style="width: 100%;height: 100%;">
+						</div>
+					</div>
 				</div>
-				<div class="prompt">
-					<p class="success">输入正确</p>
+			</div>
+
+			<div class="center">
+				<div class="centerWp">
+					<!--中间大地图-->
+					<div class="mapContainer">
+						<div class="btnLayer">
+							<<!-- div class="search">
+								<div class="searchInner">
+									<a href="javascript:;" class="searchBtn"><span class="icoSearch"></span></a>
+									<form class="searchForm">
+										<button class="icoSearch"></button>
+										<input type="text" name="" placeholder="请搜索车辆">
+									</form>
+								</div>
+							</div> -->
+							<!-- <a href="javascript:;" class="infoBtn"><span class="icoCar"></span></a> -->
+						</div>
+						<div id="myMap" class="item"></div>
+					</div>
 				</div>
 				
-				<!-- <button class="submit">登录</button> -->
-				<a href="scanboard.html" class="animsition-link submit">登录</a>
-			</form>
+				<div class="itemBox">
+					<div class="StateBox">
+						<div id="FontScroll">
+							<ul>
+								<li style="height: 281px;">
+									<div style="color: #ffd220;">
+										临港遵义科技城
+									</div>
+									<div class="fontInner clearfix">
+										<div>规划范围：规划范围:占地面积7.26平方公里，其中可建设用地7.01平方公里，不可建设用地0.25平方公里。已用建设用地2.88平方公里，剩余建设用地4.13平方公里。</div>
+										<div>产业定位：重点发展战昭新兴产业、生态特色食品产业。</div>
+										<div>
+											发展情况：现已入驻企业20家，其中规上企业1家。2020年完成工业产值5759.6万元、增加值1683.5万元，实现税收678万元。
+										</div>
+									</div>
+								</li>
+								<li style="height: 281px;">
+									<div style="color: #ffd220;">
+										高坪工业园
+									</div>
+									<div class="fontInner clearfix">
+										<div>规划范围：占地面积21.56平方公里，其中可建设用地20.7平方公里，不可建设用地0.86平方公里。已用建设用地9.27平方公里，剩余建设用地11.43平方公里。</div>
+										<div>产业定位：重点发展先进装备制造、优质烟酒产业。</div>
+										<div>
+											发展情况：现已入驻企业135家，其中规上企业33家。2020年完成工业产值146.63亿元、增加值100.13亿元，实现税收28.84亿元。
+										</div>
+									</div>
+								</li>
+								<li style="height: 281px;">
+									<div style="color: #ffd220;">
+										田沟绿色食品工业园
+									</div>
+									<div class="fontInner clearfix">
+										<div>规划范围：占地面积0.64平方公里，可建设用地0.64平方公里，已用建设用地0.46平方公里，剩余建设用地0.18平方公里。</div>
+										<div>产业定位：重点发展生态特色食品产业。</div>
+										<div>
+											发展情况：该园区己于2021年3月建成，达到企业入驻条件。目前，老村长食品、黔成丰食品等2O余家企业正在开展入驻前期准备。
+										</div>
+									</div>
+								</li>
+								<li style="height: 281px;">
+									<div style="color: #ffd220;">
+										航天高新技术产业园
+									</div>
+									<div class="fontInner clearfix">
+										<div>规划范围：占地面积0.85平方公里，可建设用地0.85平方公里，已用建设用她0.85平方公里。</div>
+										<div>产业定位：重点发展先进装备制造产业。</div>
+										<div>
+											发展情况：现已入驻企业17家，其中规上企业11家。2020年完成工业产值53.27亿元、增加值8.22亿元，实现税收5944万元。
+										</div>
+									</div>
+								</li>
+								<li style="height: 281px;">
+									<div style="color: #ffd220;">
+										外高桥工业园
+									</div>
+									<div class="fontInner clearfix">
+										<div>规划范围：占地面积0.9平方公里，可建设用地0.9平方公里，已用建设用地0.9平方公里。</div>
+										<div>产业定位：重点发展先进装备制造（高低压电器}产业。</div>
+										<div>
+											发展情况：现已入驻企业36家，其中规上企业12家。2020年完成工业产值9.12亿元、增加值1.96亿元，实现税收7846万元。
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="right">
+				<div class="item total itembg right-top" style="overflow: hidden;">
+					<div style="float: left;width: 50%;">
+						<div class="itemTit" >
+							<span class="border-yellow">入驻企业</span>
+						</div>
+						<div class="itemCon">
+							<div class="totalNum infoBtn"><strong total="208">208</strong><span>家</span></div>
+						</div>
+					</div>
+					<div style="float: left;width: 50%;">
+						<div class="itemTit" >
+							<span class="border-yellow">规上企业</span>
+						</div>
+						<div class="itemCon">
+							<div class="totalNum"><strong total="83">83</strong><span>家</span></div>
+						</div>
+					</div>
+					
+				</div>
+
+				<!--基本信息-->
+				<div class="item basicInfo right-center">
+					<div class="itemTit">
+						<span class="border-green">工业生产</span>
+					</div>
+					<div class="itemCon itembg">
+						<div class="infoPie" style="margin-bottom: 10px;">
+							<ul class="clearfix">
+								<li class="color-yellow">
+									<span class="border-yellow" id="indicator1" total="32">209</span>
+									<p>总产值</p>
+								</li>
+								<li class="color-green">
+									<span class="border-green" id="indicator2" total="65">110</span>
+									<p>增加值</p>
+								</li>
+								<li class="color-blue">
+									<span class="border-blue" id="indicator3" total="100">30</span>
+									<p>税收</p>
+								</li>
+							</ul>
+							<div id="indicatorContainer"></div>
+						</div>
+						<div style="overflow: hidden;">
+							<span class="dateTypeChoose selected" style="cursor: pointer;float: right;margin-right: 15px;color: rgb(255,230,68);" id="produceSpeedSeanson">单位:亿</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="item billState right-bottom">
+					<div class="itemTit">
+						<span class="border-blue">产业分布</span>
+					</div>
+					<div class="itemCon">
+						<div id="companyPie" style="width: 100%;height: 360px;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--Main End!-->
+	</div>
+
+	<div class="filterbg"></div>
+	<div class="popup">
+		<a href="javascript:;" class="popupClose"></a>
+		<div class="summary">
+			<div class="summaryTop">
+				<div id="summaryPie1" class="summaryPie"></div>
+				<div id="summaryPie2" class="summaryPie"></div>
+				<div id="summaryPie3" class="summaryPie"></div>
+			</div>
+			<div class="summaryBottom">
+				<div class="summaryBar">
+					<div class="summaryTit">
+						<img src="images/tit1.png">
+					</div>
+					<div id="summaryBar"></div>
+				</div>
+				
+				<div class="summaryLine">
+					<div class="summaryTit">
+						<img src="images/tit2.png">
+					</div>
+					<div id="summaryLine"></div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div id="particles-js"></div>
+
+	<div class="carInfo">
+		<a href="javascript:;" class="carClose"></a>
+		<div class="infoBox">
+			<div class="infoTop">
+				<div class="infoTit" style="font-size: 28px;color: #00DDFE;">
+					<!-- <img src="images/tit3.png"> -->
+					企业信息
+				</div>
+			</div>
+			<div class="infoMain">
+				<div class="infoLeft fl">
+					<div class="topSearch">
+						<form>
+							<button></button>
+							<input type="text" name="" placeholder="请输入企业名称搜索">
+						</form>
+					</div>
+					<div class="carState">
+						<h3>
+							<span class="fl">企业</span>
+							<span class="fr">类别</span>
+						</h3>
+						<ul class="stateUl">
+							
+						</ul>
+					</div>
+				</div>
+				<div class="infoRight fr">
+					<div class="rightWp">
+						<div class="carIntro">
+							<div class="introBox fl">
+								<div class="carImg fl">
+									<img src="images/car.jpg">
+								</div>
+								<div class="carText fl clearfix">
+									<p>企业类型：</p>
+									<p>产值：</p>
+									<p>增量：</p>
+									<p>增速：<span class="color-red"></span></p>
+									<p>经度：</p>
+									<p>纬度：</p>
+								</div>
+							</div>
+							<div class="driver fr">
+								<div class="photo">
+									<img src="images/photo.jpg">
+								</div>
+								<p>法人：</p>
+							</div>
+						</div>
+						<div class="timetable">
+							<!-- <div class="topTool">
+								<div class="tableExplain fl">
+									<div class="itemExplain fl">
+										<span class="bg-green"></span>
+										<p>开工时间</p>
+									</div>
+									<div class="itemExplain fl">
+										<span class="bg-blue"></span>
+										<p>计划时间</p>
+									</div>
+								</div>
+								<div class="topBtns fr">
+									<a href="javascript:;" class="prevWeek">上一周</a>
+									<a href="javascript:;" class="nextWeek">下一周</a>
+								</div>
+							</div> -->
+							<!-- <div class="tiemWp">
+								<div class="timeInner">
+									<div class="weekList">
+										<div class="weekItem">
+											<div class="space1"></div>
+											<p>星期一</p>
+										</div>
+										<div class="weekItem">
+											<div class="space1"></div>
+											<p>星期二</p>
+										</div>
+										<div class="weekItem">
+											<div class="space1"></div>
+											<p>星期三</p>
+										</div>
+										<div class="weekItem">
+											<div class="space1"></div>
+											<p>星期四</p>
+										</div>
+										<div class="weekItem">
+											<div class="space1"></div>
+											<p>星期五</p>
+										</div>
+										<div class="weekItem">
+											<div class="space1"></div>
+											<p>星期六</p>
+										</div>
+										<div class="weekItem">
+											<div class="space1"></div>
+											<p>星期天</p>
+										</div>
+									</div>
+									<div class="timeBox">
+										<div class="dataContainer">
+											<div class="dataBox">
+												<div class="space1"></div>
+												<div class="workTime"></div>
+												<div class="space2"></div>
+												<div class="standard"></div>
+												<div class="space3"></div>
+											</div>
+											<div class="dataBox">
+												<div class="space1"></div>
+												<div class="workTime"></div>
+												<div class="space2"></div>
+												<div class="standard"></div>
+												<div class="space3"></div>
+											</div>
+											<div class="dataBox">
+												<div class="space1"></div>
+												<div class="workTime"></div>
+												<div class="space2"></div>
+												<div class="standard"></div>
+												<div class="space3"></div>
+											</div>
+											<div class="dataBox">
+												<div class="space1"></div>
+												<div class="workTime"></div>
+												<div class="space2"></div>
+												<div class="standard"></div>
+												<div class="space3"></div>
+											</div>
+											<div class="dataBox">
+												<div class="space1"></div>
+												<div class="workTime"></div>
+												<div class="space2"></div>
+												<div class="standard"></div>
+												<div class="space3"></div>
+											</div>
+											<div class="dataBox">
+												<div class="space1"></div>
+												<div class="workTime"></div>
+												<div class="space2"></div>
+												<div class="standard"></div>
+												<div class="space3"></div>
+											</div>
+											<div class="dataBox">
+												<div class="space1"></div>
+												<div class="workTime"></div>
+												<div class="space2"></div>
+												<div class="standard"></div>
+												<div class="space3"></div>
+											</div>
+										</div>
+										<div class="timeLine line1"><span>0:00</span></div>
+										<div class="timeLine line2"><span>3:00</span></div>
+										<div class="timeLine line3"><span>6:00</span></div>
+										<div class="timeLine line4"><span>9:00</span></div>
+										<div class="timeLine line5"><span>12:00</span></div>
+										<div class="timeLine line6"><span>15:00</span></div>
+										<div class="timeLine line7"><span>18:00</span></div>
+										<div class="timeLine line8"><span>21:00</span></div>
+										<div class="timeLine line9"><span>24:00</span></div>
+									</div>
+								</div>
+								<div class="totalTable">
+									<div class="totalTit">
+										<span>总开工/天</span>
+										<span>总开工次数/天</span>
+									</div>
+									<div class="totalData">
+										<div class="totalItem">
+											<div class="space1"></div>
+											<div class="tatleWp">
+												<span>0.00</span>
+												<span>0</span>
+											</div>
+											<div class="totalBar"></div>
+										</div>
+										<div class="totalItem">
+											<div class="space1"></div>
+											<div class="tatleWp">
+												<span>0.00</span>
+												<span>0</span>
+											</div>
+											<div class="totalBar"></div>
+										</div>
+										<div class="totalItem">
+											<div class="space1"></div>
+											<div class="tatleWp">
+												<span>0.00</span>
+												<span>0</span>
+											</div>
+											<div class="totalBar"></div>
+										</div>
+										<div class="totalItem">
+											<div class="space1"></div>
+											<div class="tatleWp">
+												<span>0.00</span>
+												<span>0</span>
+											</div>
+											<div class="totalBar"></div>
+										</div>
+										<div class="totalItem">
+											<div class="space1"></div>
+											<div class="tatleWp">
+												<span>0.00</span>
+												<span>0</span>
+											</div>
+											<div class="totalBar"></div>
+										</div>
+										<div class="totalItem">
+											<div class="space1"></div>
+											<div class="tatleWp">
+												<span>0.00</span>
+												<span>0</span>
+											</div>
+											<div class="totalBar"></div>
+										</div>
+										<div class="totalItem">
+											<div class="space1"></div>
+											<div class="tatleWp">
+												<span>0.00</span>
+												<span>0</span>
+											</div>
+											<div class="totalBar"></div>
+										</div>
+									</div>
+								</div>
+							</div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<canvas id="canvas" style="position: absolute;top: 0;left: 0;"></canvas> 
 </body>
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="js/bg.js"></script> -->
+<script type="text/javascript" src="js/scanboard.js"></script>
+<script type="text/javascript" src="js/fontscroll.js"></script>
 <script type="text/javascript" src="js/jquery.animsition.js"></script>
-<script src="js/particles.min.js"></script>
-<script src="js/app.js"></script>
-<script type="text/javascript">
-	$(".animsition").animsition({
-	    inClass               :   'fade-in',
-	    outClass              :   'fade-out',
-	    inDuration            :    800,
-	    outDuration           :    1000,
-	    linkElement           :   '.animsition-link',
-
-	    loading               :    false,
-	    loadingParentElement  :   'body',
-	    loadingClass          :   'animsition-loading',
-	    unSupportCss          : [ 'animation-duration',
-	                              '-webkit-animation-duration',
-	                              '-o-animation-duration'
-	                            ],
-	
-
-	    overlay               :   false,
-	    
-	    overlayClass          :   'animsition-overlay-slide',
-	    overlayParentElement  :   'body'
-  	});
-</script>
+<script type="text/javascript" src="js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/request.js"></script>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.3&key=f8ffe058b8e6f5b05e8ff43ca4207393"></script>
 </html>
