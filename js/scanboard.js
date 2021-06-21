@@ -191,7 +191,6 @@ $(function(){
 	//公司构成
 	var pieChart1 = echarts.init(document.getElementById('companyPie'));
 	pieChart1.setOption({
-	
 	  color:["#87cefa","#ff7f50","#32cd32","#da70d6",],
 	  legend: {
 	      top: '5%',
@@ -209,28 +208,28 @@ $(function(){
 	      {
 	          name:'产业分布',
 	          type:'pie',
-	          radius : ['50%', '60%'],
+	          radius : '50%',
 	          center : ['50%', '50%'],
 			  avoidLabelOverlap: false,
-	          itemStyle: {
-				  borderRadius: 10,
-				  borderColor: '#fff',
-				  borderWidth: 2
-			  },
-			  label: {
-				  show: false,
-				  position: 'center'
-			  },
+	    //       itemStyle: {
+				 //  borderRadius: 10,
+				 //  borderColor: '#fff',
+				 //  borderWidth: 2
+			  // },
+			  // label: {
+				 //  show: false,
+				 //  position: 'center'
+			  // },
 			  emphasis: {
 				  label: {
 					  show: true,
-					  fontSize: '28',
+					  fontSize: '12',
 					  fontWeight: 'bold'
 				  }
 			  },
-			  labelLine: {
-				  show: false
-			  },
+			  // labelLine: {
+				 //  show: false
+			  // },
 	          data:[
 	              {value:43, name:'先进装备制造产业'},
 	              {value:7, name:'优质烟酒产业'},
@@ -1321,22 +1320,32 @@ $(function(){
         autohidemode: false //是否隐藏滚动条
     });
 
-
-	var url = "http://huichuan.gmh.zxytinfo.com/app/company/datas";
-	$.ajax({
-	    url: url,
-	    type: "POST",
-	    dataType: "json",
-	    success: function(data) {
-			console.log(data);
-			return data;
-	    }
-	});
-	
-	// <li>
-	// 	<p>粤A3456344</p>
-	// 	<span class="work">工作</span>
-	// </li>
+	function list(){
+		var url = "http://huichuan.gmh.zxytinfo.com/app/company/datas";
+		$.ajax({
+		    url: url,
+		    type: "POST",
+		    dataType: "json",
+		    success: function(data) {
+				$("#stateUl").empty()
+				for(var i=0;i<data.data.length;i++){
+					var obj = data.data[i]
+					
+					if(i == 0){
+						var html = "<li class='selected'>";
+					} else {
+						var html = "<li>";
+					}
+					html += "<p>" + obj.name + "</p>" + 
+						"<span class='type_" + obj.type + "'>工作</span>" +
+					"</li>";
+					$("#stateUl").append(html);
+				}
+				return data;
+		    }
+		});
+	}
+	list();
 	
     //车辆信息工作时间表
     //模拟数据

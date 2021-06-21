@@ -1237,7 +1237,7 @@ body{
 	margin: 0 auto;
 }
 .infoBox .infoLeft{
-	width: 22.4%;
+	width: 28.4%;
 	height: 100%;
 	box-sizing: border-box;
 	padding-top: 54px;
@@ -1362,7 +1362,7 @@ body{
 }
 
 .infoBox .infoRight{
-	width: 77.6%;
+	width: 71.6%;
 	height: 100%;
 	box-sizing: border-box;
 	border-left: 1px solid #030303;
@@ -2263,4 +2263,12 @@ body{
 }
 .right-bottom{
 	height: 42%;
+}
+
+#stateUl li{
+	cursor: pointer;
+}
+
+#stateUl .selected p{
+	color: rgb(255,230,68);
 }
