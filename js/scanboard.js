@@ -75,34 +75,14 @@ $(function(){
 	}
 	
 	//高德地图
-    var myMap = new AMap.Map('myMap',{
-        resizeEnable: true,
-        zoom: 12,
-        mapStyle: 'amap://styles/darkblue',
-        center: [106.934195,27.753007],
-    });
+    // var myMap = new AMap.Map('myMap',{
+    //     resizeEnable: true,
+    //     zoom: 12,
+    //     mapStyle: 'amap://styles/darkblue',
+    //     center: [106.934195,27.753007],
+    // });
     
-   /* var point = [
-    	[103.752171,36.068716],
-    	[103.759037,36.072046],
-    	[103.73788,36.061257]
-	]
-    var maker;
-    for (var i = 0; i < point.length; i += 1) {
-        var marker = new AMap.Marker({
-            position: point[i],
-            map: myMap,
-            icon:'images/s_ico4.png',
-        });
-        marker.content='<p>ZC1712120023</p>'+
-				'<p>起点：配件A厂</p>'+
-				'<p>终点：美的冰箱公司</p>'+
-				'<p>满载率：95%</p>'+
-				'<p>已使用时间：2小时15分</p>';
-        marker.on('click', markerClick);
-        //map.setFitView(); 
-    } */
-    var infoWindow = new AMap.InfoWindow({
+    /* var infoWindow = new AMap.InfoWindow({
     	offset: new AMap.Pixel(16, -36)
     });
   	function markerClick(e){
@@ -186,7 +166,7 @@ $(function(){
 	})
 	circle4.on('click', function(){
 		show_list()
-	})
+	}) */
 
 	//公司构成
 	var pieChart1 = echarts.init(document.getElementById('companyPie'));
@@ -1497,6 +1477,7 @@ $(function(){
     //车辆信息弹出框的显示隐藏效果
     $('.infoBtn').on('click',function(){
 		show_list();
+		list();
 	});
 	
 	function show_list(){
@@ -1529,11 +1510,14 @@ $(function(){
 	
 	var url = "http://huichuan.gmh.zxytinfo.com/app/company/datas";
 	
-	function list(){
+	function list(zoneId){
 		var params = {};
 		params.order = 'leadingFlag desc, q desc';
 		var search_name = $("#search_name").val();
 		params.name = search_name;
+		if(zoneId){
+			params.zoneId = zoneId;
+		}
 		
 		$.ajax({
 		    url: url,
@@ -1554,7 +1538,7 @@ $(function(){
 						var html = "<li class='list_li' attr-id='" + obj.id + "'>";
 					}
 					html += "<p>" + obj.name + "</p>" + 
-						"<span class='type_" + obj.type + "'>" + (obj.leadingFlag=='Y' ? '是': '否') + "</span>" +
+						// "<span class='type_" + obj.type + "'>" + (obj.leadingFlag=='Y' ? '是': '否') + "</span>" +
 					"</li>";
 					$("#stateUl").append(html);
 				}
@@ -1603,4 +1587,10 @@ $(function(){
 		    }
 		});
 	}
+	
+	$(document).on("click",".map_circle", function(){
+		var zoneId = $(this).attr("data-id");
+		list(zoneId);
+		show_list()
+	})
 });
