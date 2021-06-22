@@ -1298,9 +1298,18 @@ $(function(){
 		},400);
 	});
 
-	$('.search').on('click',function(event){
-		event.stopPropagation();
+	$('#btn_search').on('click',function(event){
+		list();
 	});
+	
+	$("#search_name").on("keydown",function(event){
+		var keyCode = event.keyCode || event.which;
+		if(keyCode == "13"){
+			list()
+			event.preventDefault();
+		}
+	});
+	
 	$('body').on('click',function(){
 		$('.searchInner').find('form').hide();
 		$('.searchInner').removeClass('open');
@@ -1320,33 +1329,6 @@ $(function(){
         autohidemode: false //是否隐藏滚动条
     });
 
-	function list(){
-		var url = "http://huichuan.gmh.zxytinfo.com/app/company/datas";
-		$.ajax({
-		    url: url,
-		    type: "POST",
-		    dataType: "json",
-		    success: function(data) {
-				$("#stateUl").empty()
-				for(var i=0;i<data.data.length;i++){
-					var obj = data.data[i]
-					
-					if(i == 0){
-						var html = "<li class='selected'>";
-					} else {
-						var html = "<li>";
-					}
-					html += "<p>" + obj.name + "</p>" + 
-						"<span class='type_" + obj.type + "'>工作</span>" +
-					"</li>";
-					$("#stateUl").append(html);
-				}
-				return data;
-		    }
-		});
-	}
-	list();
-	
     //车辆信息工作时间表
     //模拟数据
     var carData = [
@@ -1544,4 +1526,81 @@ $(function(){
 			$('.carInfo').width(0);
 		},800);
 	});
+	
+	var url = "http://huichuan.gmh.zxytinfo.com/app/company/datas";
+	
+	function list(){
+		var params = {};
+		params.order = 'leadingFlag desc, q desc';
+		var search_name = $("#search_name").val();
+		params.name = search_name;
+		
+		$.ajax({
+		    url: url,
+		    type: "POST",
+		    dataType: "json",
+			data: params,
+		    success: function(result) {
+				var data = result.data;
+				$("#stateUl").empty()
+				var selectedId;
+				for(var i=0;i<data.length;i++){
+					var obj = data[i]
+					
+					if(i == 0){
+						var html = "<li class='selected list_li' attr-id='" + obj.id + "'>";
+						selectedId = obj.id;
+					} else {
+						var html = "<li class='list_li' attr-id='" + obj.id + "'>";
+					}
+					html += "<p>" + obj.name + "</p>" + 
+						"<span class='type_" + obj.type + "'>" + (obj.leadingFlag=='Y' ? '是': '否') + "</span>" +
+					"</li>";
+					$("#stateUl").append(html);
+				}
+				company_change(selectedId);
+		    }
+		});
+	}
+	list();
+	
+	$(document).on("click",".list_li", function(){
+		var id = $(this).attr("attr-id");
+		company_change(id)
+		$("#stateUl li").removeClass("selected");
+		$(this).addClass("selected")
+	})
+	
+	function company_change(id){
+		$("#detail_name").text("");
+		$("#detail_image").attr("src", "")
+		$("#detail_leadingTypeName").text("");
+		$("#detail_leadingFlag").text("");
+		$("#detail_staffCount").text("");
+		$("#detail_mainProduct").text("");
+		$("#detail_baobaoDutyDeptName").text("");
+		$("#detail_content").html("");
+		
+		var selectUrl = url + "?id=" + id;
+		$.ajax({
+		    url: selectUrl,
+		    type: "POST",
+		    dataType: "json",
+		    success: function(result) {
+				var obj = result.data[0];
+				$("#detail_name").text(obj.name);
+				$("#detail_image").attr("src", obj.imageUrl)
+				$("#detail_leadingTypeName").text(obj.leadingTypeName);
+				if(obj.leadingFlag == 'Y'){
+					$("#detail_leadingFlag").text('是');
+				}else{
+					$("#detail_leadingFlag").text('否');
+				}
+				$("#detail_staffCount").text(obj.staffCount);
+				$("#detail_mainProduct").text(obj.mainProduct);
+				$("#detail_baobaoDutyDeptName").text(obj.baobaoDutyDeptName);
+				$("#detail_content").html(obj.about);
+		    }
+		});
+	}
 });

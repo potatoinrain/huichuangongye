@@ -260,18 +260,18 @@
 		<a href="javascript:;" class="carClose"></a>
 		<div class="infoBox">
 			<div class="infoTop">
-				<div class="infoTit" style="font-size: 28px;color: #00DDFE;">
+				<div class="infoTit" style="font-size: 28px;color: #00DDFE;" id="detail_name">
 					<!-- <img src="images/tit3.png"> -->
-					企业信息
+					园区信息
 				</div>
 			</div>
 			<div class="infoMain">
 				<div class="infoLeft fl">
 					<div class="topSearch">
-						<form>
-							<button></button>
-							<input type="text" name="" placeholder="请输入企业名称搜索">
-						</form>
+						<div class="form">
+							<button type="button" id="btn_search"></button>
+							<input type="text" id="search_name" placeholder="请输入企业名称搜索">
+						</div>
 					</div>
 					<div class="carState">
 						<h3>
@@ -287,25 +287,27 @@
 						<div class="carIntro">
 							<div class="introBox fl">
 								<div class="carImg fl">
-									<img src="images/car.jpg">
+									<img id="detail_image" src="images/car.jpg">
 								</div>
 								<div class="carText fl clearfix">
-									<p>企业类型：</p>
-									<p>产值：</p>
-									<p>增量：</p>
-									<p>增速：<span class="color-red"></span></p>
-									<p>经度：</p>
-									<p>纬度：</p>
+									<p>企业类型：<span id="detail_leadingTypeName"></span></p>
+									<p>规上企业：<span id="detail_leadingFlag"></span></p>
+									<p>职工人数：<span id="detail_staffCount"></span> 人</p>
+									<p>包保科室：<span id="detail_baobaoDutyDeptName"></span></p>
+									<p style="width: 100%;">主要产品：<span id="detail_mainProduct"></span><span class="color-red"></span></p>
 								</div>
 							</div>
-							<div class="driver fr">
+							<!-- <div class="driver fr">
 								<div class="photo">
 									<img src="images/photo.jpg">
 								</div>
 								<p>法人：</p>
-							</div>
+							</div> -->
 						</div>
-						<div class="timetable">
+						<div class="timetable" >
+							<div id="detail_content">
+								
+							</div>
 							<!-- <div class="topTool">
 								<div class="tableExplain fl">
 									<div class="itemExplain fl">

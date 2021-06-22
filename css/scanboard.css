@@ -1134,38 +1134,38 @@ body{
 	top: 12px;
 	left: 12px;
 }
-.btnLayer .search form{
+.btnLayer .search .form{
 	width: 200px;
 	height: 24px;
 	padding: 12px 20px;
 	display: none;
 }
-.btnLayer .search form button.icoSearch{
+.btnLayer .search .form button.icoSearch{
 	float: left;
 	margin-right: 10px;
 	cursor: pointer;
 }
 
-.btnLayer .search form input{
+.btnLayer .search .form input{
 	float: left;
 	width: 166px;
 	height: 24px;
 	line-height: 24px;
 	color: #fff;
 }
-.btnLayer .search form input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+.btnLayer .search .form input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #fff; opacity:1; 
 }
 
-.btnLayer .search form input::-moz-placeholder { /* Mozilla Firefox 19+ */
+.btnLayer .search .form input::-moz-placeholder { /* Mozilla Firefox 19+ */
     color: #fff;opacity:1;
 }
 
-.btnLayer .search form input:-ms-input-placeholder{
+.btnLayer .search .form input:-ms-input-placeholder{
     color: #fff;opacity:1;
 }
 
-.btnLayer .search form input::-webkit-input-placeholder{
+.btnLayer .search .form input::-webkit-input-placeholder{
     color: #fff;opacity:1;
 }
 .btnLayer a.infoBtn{
@@ -1237,7 +1237,7 @@ body{
 	margin: 0 auto;
 }
 .infoBox .infoLeft{
-	width: 28.4%;
+	width: 30.4%;
 	height: 100%;
 	box-sizing: border-box;
 	padding-top: 54px;
@@ -1256,7 +1256,7 @@ body{
 	background: rgba(0,222,255,0.2);
 	border-radius: 18px;
 }
-.infoBox .infoLeft .topSearch form{
+.infoBox .infoLeft .topSearch .form{
 	height: 20px;
 	padding: 8px 10px 8px 30px;
 	position: relative;
@@ -1316,7 +1316,7 @@ body{
 	height: 35px;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	color: #808080;
+	color: rgb(18,248,209);
 }
 .infoBox .infoLeft .carState h3 span:last-child{
 	text-align: right;
@@ -1326,7 +1326,7 @@ body{
 	overflow: hidden;
 }
 .infoBox .infoLeft .carState ul li{
-	width: 80%;
+	width: 92%;
 	height: 35px;
 	line-height: 35px;
 	border-bottom: 1px dashed #404040;
@@ -1342,10 +1342,10 @@ body{
 	color: #00deff;
 }
 .infoBox .infoLeft .carState ul li p{
-	width: 70%;
+	width: 80%;
 }
 .infoBox .infoLeft .carState ul li span{
-	width: 30%;
+	width: 20%;
 	text-align: right;
 }
 .infoBox .infoLeft .carState ul li span.keji{
@@ -1362,14 +1362,14 @@ body{
 }
 
 .infoBox .infoRight{
-	width: 71.6%;
+	width: 69.6%;
 	height: 100%;
 	box-sizing: border-box;
 	border-left: 1px solid #030303;
 }
 .infoBox .infoRight .rightWp{
-	width: 94%;
-	margin: 0 auto;
+	width: 97%;
+	margin: 0 0 0 3%;
 	height: 100%;
 }
 .infoBox .infoRight .carIntro{
@@ -1378,16 +1378,17 @@ body{
 	border-bottom: 1px solid #13284d; 
 }
 .infoBox .infoRight .introBox{
-	width: 72%;
+	width: 95%;
 	margin-left: 5%;
 	height: 90%;
 	background: url(../images/infoBg.png);
 	background-size: 100% 100%;
+	box-sizing: border-box;
 }
 .infoBox .infoRight .introBox .carImg{
 	width: 12%;
 	height: 100%;
-	margin: 0 8%;
+	margin: 0 5% 0 10%;
 	position: relative;
 }
 .infoBox .infoRight .introBox .carImg img{
@@ -1446,11 +1447,20 @@ body{
 }
 
 .infoBox .infoRight .timetable{
+	color: #FFFFFF;
+	text-indent: 32px;
 	height: 70%;
 	box-sizing: border-box;
 	padding-top:40px;
+	padding-left: 12px;
+	padding-right: 12px;
 	border-top: 1px solid #030303;
 	position: relative; 
+	font-size: 14px;
+	line-height: 28px;
+	letter-spacing: 2px;
+	box-sizing: border-box;
+	overflow: auto;
 }
 .infoBox .infoRight .timetable .topTool{
 	height: 28px;
@@ -1758,7 +1768,7 @@ body{
 		padding: 0 16px;
 		border-radius: 16px;
 	}
-	.infoBox .infoLeft .topSearch form{
+	.infoBox .infoLeft .topSearch .form{
 		padding: 6px 10px 6px 30px;
 	}
 	.infoBox .infoLeft .topSearch button{
@@ -1860,17 +1870,17 @@ body{
 		top: 8px;
 		left: 8px;
 	}
-	.btnLayer .search form{
+	.btnLayer .search .form{
 		width: 200px;
 		height: 24px;
 		padding: 6px 15px;
 	}
-	.btnLayer .search form button.icoSearch{
+	.btnLayer .search .form button.icoSearch{
 		margin-right: 10px;
 		margin-top: 2px;
 	}
 
-	.btnLayer .search form input{
+	.btnLayer .search .form input{
 		width: 166px;
 	}
 	.btnLayer .icoCar{
@@ -1930,7 +1940,7 @@ body{
 		padding: 0 14px;
 		border-radius: 14px;
 	}
-	.infoBox .infoLeft .topSearch form{
+	.infoBox .infoLeft .topSearch .form{
 		padding: 4px 10px 4px 28px;
 	}
 	.infoBox .infoLeft .topSearch button{
@@ -2033,17 +2043,17 @@ body{
 		top: 6px;
 		left: 6px;
 	}
-	.btnLayer .search form{
+	.btnLayer .search .form{
 		width: 200px;
 		height: 24px;
 		padding: 3px 15px;
 	}
-	.btnLayer .search form button.icoSearch{
+	.btnLayer .search .form button.icoSearch{
 		margin-right: 10px;
 		margin-top: 3px;
 	}
 
-	.btnLayer .search form input{
+	.btnLayer .search .form input{
 		width: 166px;
 	}
 	.btnLayer .icoCar{
@@ -2103,7 +2113,7 @@ body{
 		padding: 0 14px;
 		border-radius: 14px;
 	}
-	.infoBox .infoLeft .topSearch form{
+	.infoBox .infoLeft .topSearch .form{
 		padding: 4px 10px 4px 28px;
 	}
 	.infoBox .infoLeft .topSearch button{
@@ -2206,17 +2216,17 @@ body{
 		top: 6px;
 		left: 6px;
 	}
-	.btnLayer .search form{
+	.btnLayer .search .form{
 		width: 200px;
 		height: 24px;
 		padding: 3px 15px;
 	}
-	.btnLayer .search form button.icoSearch{
+	.btnLayer .search .form button.icoSearch{
 		margin-right: 10px;
 		margin-top: 3px;
 	}
 
-	.btnLayer .search form input{
+	.btnLayer .search .form input{
 		width: 166px;
 	}
 	.btnLayer .icoCar{
@@ -2265,10 +2275,49 @@ body{
 	height: 42%;
 }
 
+#stateUl{
+	overflow: auto !important;
+	width: 85%;
+}
 #stateUl li{
 	cursor: pointer;
 }
 
 #stateUl .selected p{
 	color: rgb(255,230,68);
+}
+
+#detail_image{
+	max-width: 10.5625rem;
+	max-height: 6rem;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+/*滚动区域背景*/
+::-webkit-scrollbar-track-piece {
+  background-color: #fcf9f8;
+  -webkit-border-radius: 6px;
+}
+
+/*竖向滚动条*/
+::-webkit-scrollbar-thumb:vertical {
+  height: 5px;
+  width: 5px;
+  background-color: rgb(19,182,250);
+  border-radius: 3px;
+  -webkit-border-radius: 6px;
+}
+
+/*横向滚动条*/
+::-webkit-scrollbar-thumb:horizontal {
+  width: 5px;
+  height: 5px;
+  border-radius: 2px;
+  background-color: rgb(19,182,250);
+  -webkit-border-radius: 6px;
 }
