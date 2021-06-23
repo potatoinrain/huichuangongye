@@ -288,6 +288,9 @@ body{
 
 #myMap{
 	height: 480px; border:2px dotted rgba(0,122,255,.25); overflow: hidden;
+	background: url(../images/hc_map.jpg) no-repeat;
+	background-size: 100% 100%;
+	
 }
 #myMap .amap-info-content{
 	background: #00deff;
@@ -2320,4 +2323,42 @@ body{
   border-radius: 2px;
   background-color: rgb(19,182,250);
   -webkit-border-radius: 6px;
+}
+
+.map_circle{
+	width: 6.25rem;
+	height: 6.25rem;
+	border: 0.1875rem solid rgb(255,230,68);
+	position: absolute;
+	border-radius: 50%;
+}
+
+.circle_1{
+	top: 12%;
+	left: 36%;
+	transform: rotate(155deg) scale(1,0.6);
+}
+
+.circle_2{
+	top: 27%;
+	left: 47%;
+	transform: rotate(45deg) scale(1.7, 0.8);
+}
+
+.circle_3{
+	top: 44%;
+	left: 72%;
+	transform: rotate(45deg) scale(0.6, 0.6);
+}
+
+.circle_4{
+	top: 70%;
+	left: 63%;
+	transform: rotate(45deg) scale(0.5, 0.5);
+}
+
+.circle_5{
+	top: 83%;
+	left: 19%;
+	transform: rotate(60deg) scale(0.35, 0.55);
 }
