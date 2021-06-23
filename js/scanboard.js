@@ -303,7 +303,21 @@ $(function(){
 					name: '产值',
 					type: 'bar',
 					data: [30.54, 46.11, 1.94, 44.38],
-					barWidth: 15
+					barWidth: 15,
+					itemStyle:{
+						normal: {
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+								offset: 0,
+								color: 'rgb(18,250,110)'
+							}, {
+								offset: 0.5,
+								color: 'rgb(18,248,209)'
+							}, {
+								offset: 1,
+								color: 'rgb(19,182,250)'
+							}]),
+						}
+					}
 				}
 			]
 		}, true);
@@ -390,7 +404,21 @@ $(function(){
 					name: '产值',
 					type: 'bar',
 					data: [97.54, 100.82, 5.93, 121.49],
-					barWidth: 15
+					barWidth: 15,
+					itemStyle:{
+						normal: {
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+								offset: 0,
+								color: 'rgb(18,250,110)'
+							}, {
+								offset: 0.5,
+								color: 'rgb(18,248,209)'
+							}, {
+								offset: 1,
+								color: 'rgb(19,182,250)'
+							}]),
+						}
+					}
 				}
 			]
 		}, true);
@@ -482,7 +510,21 @@ $(function(){
 					name: '增加值',
 					type: 'bar',
 					data: [17.12, 89.47, 1, 29.78],
-					barWidth: 15
+					barWidth: 15,
+					itemStyle:{
+						normal: {
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+								offset: 0,
+								color: 'rgb(18,250,110)'
+							}, {
+								offset: 0.5,
+								color: 'rgb(18,248,209)'
+							}, {
+								offset: 1,
+								color: 'rgb(19,182,250)'
+							}]),
+						}
+					}
 				}
 			]
 		});
@@ -569,7 +611,21 @@ $(function(){
 					name: '增加值',
 					type: 'bar',
 					data: [5.5, 40.91, 0.36, 10.83],
-					barWidth: 15
+					barWidth: 15,
+					itemStyle:{
+						normal: {
+							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+								offset: 0,
+								color: 'rgb(18,250,110)'
+							}, {
+								offset: 0.5,
+								color: 'rgb(18,248,209)'
+							}, {
+								offset: 1,
+								color: 'rgb(19,182,250)'
+							}]),
+						}
+					}
 				}
 			]
 		});
