@@ -1556,6 +1556,9 @@ $(function(){
 	})
 	
 	function company_change(id){
+		$("#companyDetail").show()
+		$("#zoneDetail").hide()
+		
 		$("#detail_name").text("");
 		$("#detail_image").attr("src", "")
 		$("#detail_leadingTypeName").text("");
@@ -1590,7 +1593,36 @@ $(function(){
 	
 	$(document).on("click",".map_circle", function(){
 		var zoneId = $(this).attr("data-id");
-		list(zoneId);
+		
+		zoneDetail(zoneId);
 		show_list()
 	})
+	
+	function zoneDetail(zoneId){
+		$("#companyDetail").hide()
+		$("#zoneDetail").show()
+		
+		var detailUrl = "http://huichuan.gmh.zxytinfo.com/app/news/id/" + zoneId;
+		$.ajax({
+		    url: detailUrl,
+		    type: "POST",
+		    dataType: "json",
+			// data: params,
+		    success: function(result) {
+				$("#detail_name").text("");
+				$("#zone_detail_image").attr("src", "")
+				$("#detail_leadingTypeName").text("");
+				$("#detail_leadingFlag").text("");
+				$("#detail_staffCount").text("");
+				$("#detail_mainProduct").text("");
+				$("#detail_baobaoDutyDeptName").text("");
+				$("#zone_detail_content").html("");
+				
+				var obj = result.data;
+				$("#detail_name").text(obj.title);
+				$("#zone_detail_image").attr("src", obj.imageUrl)
+				$("#zone_detail_content").html(obj.content);
+		    }
+		});
+	}
 });
