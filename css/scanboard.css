@@ -2362,3 +2362,13 @@ body{
 	left: 19%;
 	transform: rotate(60deg) scale(0.35, 0.55);
 }
+
+#map_tooltip{
+	top: 46%;
+	width: 18%;
+	position: absolute;
+}
+#map_tooltip img{
+	width: 100%;
+	height: auto;
+}
