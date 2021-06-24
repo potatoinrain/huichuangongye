@@ -13,7 +13,7 @@
 }
 html,body{
 	height: 100%;
-	font-family: "微软雅黑";
+	font-family: "SimSun" !important;
 	overflow: hidden;
 }
 body{
@@ -2334,6 +2334,7 @@ body{
 	width: 6.25rem;
 	height: 6.25rem;
 	border: 0.1875rem solid rgb(255,230,68);
+	background: rgb(255,230,68, 0.6);
 	position: absolute;
 	border-radius: 50%;
 }
@@ -2344,10 +2345,31 @@ body{
 	transform: rotate(155deg) scale(1,0.6);
 }
 
+.circle_1_desc{
+	width: 12.25rem;
+	height: 6.25rem;
+	line-height: 6.25rem;
+	position: absolute;
+	border-radius: 50%;
+	top: 12%;
+	left: 36%;
+}
+
 .circle_2{
-	top: 27%;
-	left: 47%;
+	top: 30%;
+	left: 49%;
 	transform: rotate(45deg) scale(1.7, 0.8);
+}
+
+.circle_2_desc{
+	width: 12.25rem;
+	height: 6.25rem;
+	line-height: 6.25rem;
+	position: absolute;
+	border-radius: 50%;
+	top: 30%;
+	left: 49%;
+	margin-left: 7.75rem !important;
 }
 
 .circle_3{
@@ -2356,16 +2378,80 @@ body{
 	transform: rotate(45deg) scale(0.6, 0.6);
 }
 
+.circle_3_desc{
+	width: 12.25rem;
+	height: 6.25rem;
+	line-height: 6.25rem;
+	position: absolute;
+	border-radius: 50%;
+	top: 44%;
+	left: 72%;
+	margin-top: 3.75rem;
+	margin-left: -1rem !important;
+}
+
 .circle_4{
 	top: 70%;
 	left: 63%;
 	transform: rotate(45deg) scale(0.5, 0.5);
+}
+.circle_4_desc{
+	width: 12.25rem;
+	height: 6.25rem;
+	line-height: 6.25rem;
+	position: absolute;
+	border-radius: 50%;
+	top: 70%;
+	left: 63%;
+	margin-top: 3.25rem;
+	margin-left: -1.5rem !important;
 }
 
 .circle_5{
 	top: 83%;
 	left: 19%;
 	transform: rotate(60deg) scale(0.35, 0.55);
+}
+.circle_5_desc{
+	width: 12.25rem;
+	height: 6.25rem;
+	line-height: 6.25rem;
+	position: absolute;
+	border-radius: 50%;
+	top: 83%;
+	left: 19%;
+	margin-left: 5.5rem !important;
+}
+
+.circle_desc{
+	/* color: rgb(249,17,226); */
+	font-weight: 600;
+	font-size: 16px;
+	color: #FFFFFF;
+	margin-left: 7rem
+}
+.circle_desc .circle_wrap{
+	background: #e6f1ff;
+	border-radius: 0px;
+	box-shadow: 3px 0px 0px #28a9c5;
+	box-sizing: border-box;
+	padding: 6px 0;
+	box-shadow: 0px 0px 10px #0014ff;
+	opacity: 0.7;
+	border: 1px solid #0014ff;
+}
+.circle_wrap b{
+	margin: 3px 12px 3px 9px;
+	min-width: 60px;
+	word-wrap: break-word;
+	display: inline-block;
+	text-align: left;
+	text-overflow: ellipsis;
+	font-family: Microsoft Yahei;
+	color: #000000;
+	font-size: 14px;
+	line-height: 1.4;
+	display: inline-block;
 }
 
 #map_tooltip{

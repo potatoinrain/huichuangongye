@@ -1647,12 +1647,12 @@ $(function(){
 		});
 	}
 	
-	$(document).on("click",".map_circle", function(){
+	$(document).on("click",".map_circle,.circle_desc", function(){
 		var zoneId = $(this).attr("data-id");
-		
 		zoneDetail(zoneId);
 		show_list()
 	})
+	
 	
 	function zoneDetail(zoneId){
 		$("#companyDetail").hide()
