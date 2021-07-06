@@ -1,13 +1,13 @@
-function request(url , params){
-	var result = $.ajax({
-	    url: url,
-	    data: params,
-	    type: "POST",
-	    dataType: "json",
-	    success: function(data) {
-			console.log(data)
-			return data;
-	    }
-	});
-	return result;
+function ajaxGet(url, params, callback){
+	var result = "";
+	$.ajax({
+		url: url,
+		dataType: "json",
+		data: params,
+		async:false,
+		success: function(data) {
+			result = data;
+		}
+	})
+	return result
 }

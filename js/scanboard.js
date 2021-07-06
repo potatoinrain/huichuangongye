@@ -74,6 +74,34 @@ $(function(){
 		}
 	}
 	
+	var data_2021 = {};
+	var data_2020 = {};
+	var data_2019 = {};
+	function data_request(){
+		var dataUrl = "http://huichuan.gmh.zxytinfo.com/app/outputYear/datas";
+		var result = ajaxGet(dataUrl);
+		var data = result.data;
+		
+		for(var i=0;i<data.length;i++){
+			var obj = data[i]
+			if(obj.year == "2019年"){
+				data_2019 = obj;
+			} else if (obj.year == "2020年"){
+				data_2020 = obj;
+			} else{
+				data_2021 = obj;
+			}
+		}
+		
+		var html = "<span class=\"dateTypeChoose data_2021 selected\" style=\"cursor: pointer;float: right;\" >" + data_2021.year + "</span>" +
+					"<span class=\"dateTypeChoose selected\" style=\"float: right;\">/</span>" +
+					"<span class=\"dateTypeChoose data_2020\" style=\"cursor: pointer;float: right;\" >" + data_2020.year + "</span>" +
+					"<span class=\"dateTypeChoose selected\" style=\"float: right;\">/</span>" +
+					"<span class=\"dateTypeChoose data_2019\" style=\"cursor: pointer;float: right;\" >" + data_2019.year + "</span>"
+		$("#main .itemTit").append(html);
+	}
+	data_request();
+	
 	//高德地图
     // var myMap = new AMap.Map('myMap',{
     //     resizeEnable: true,
@@ -221,10 +249,85 @@ $(function(){
 	  });
 
 	//产值
+	var names_produce = new Array();
+	var datas_produce = new Array();
+	var datas_produceAdd = new Array();
+	var datas_produceSpeed = new Array();
+
+	$(".data_2021").on("click", function(){
+		names_produce.length = 0
+		datas_produce.length = 0
+		datas_produceAdd.length = 0
+		datas_produceSpeed.length = 0
+		
+		var items = data_2021.items;
+		var names = new Array();
+		var datas = new Array();
+		for(var i=0;i<items.length;i++){
+			var item = items[i]
+			names_produce.push(item.name)
+			datas_produce.push((item.value1/100000).toFixed(2))
+			datas_produceAdd.push((item.value2/100000).toFixed(2))
+			datas_produceSpeed.push(item.value3)
+		}
+		$(".data_2021").addClass("selected");
+		$(".data_2020").removeClass("selected")
+		$(".data_2019").removeClass("selected")
+		produceChartInit()
+		produceAddChartInit()
+		produceSpeedChartInit()
+	})
+	
+	$(".data_2020").on("click", function(){
+		names_produce.length = 0
+		datas_produce.length = 0
+		datas_produceAdd.length = 0
+		datas_produceSpeed.length = 0
+		
+		var items = data_2020.items;
+		var names = new Array();
+		var datas = new Array();
+		for(var i=0;i<items.length;i++){
+			var item = items[i]
+			names_produce.push(item.name)
+			datas_produce.push((item.value1/100000).toFixed(2))
+			datas_produceAdd.push((item.value2/100000).toFixed(2))
+			datas_produceSpeed.push(item.value3)
+		}
+		$(".data_2020").addClass("selected");
+		$(".data_2021").removeClass("selected")
+		$(".data_2019").removeClass("selected")
+		produceChartInit()
+		produceAddChartInit()
+		produceSpeedChartInit()
+	})
+	
+	$(".data_2019").on("click", function(){
+		names_produce.length = 0
+		datas_produce.length = 0
+		datas_produceAdd.length = 0
+		datas_produceSpeed.length = 0
+		
+		var items = data_2019.items;
+		var names = new Array();
+		var datas = new Array();
+		for(var i=0;i<items.length;i++){
+			var item = items[i]
+			names_produce.push(item.name)
+			datas_produce.push((item.value1/100000).toFixed(2))
+			datas_produceAdd.push((item.value2/100000).toFixed(2))
+			datas_produceSpeed.push(item.value3)
+		}
+		$(".data_2019").addClass("selected");
+		$(".data_2020").removeClass("selected")
+		$(".data_2021").removeClass("selected")
+		produceChartInit()
+		produceAddChartInit()
+		produceSpeedChartInit()
+	})
+	
 	var produceChart = echarts.init(document.getElementById('produceChart'));
-	$("#produceSeanson").on("click", function(){
-		$("#produceSeanson").addClass("selected");
-		$("#produceYear").removeClass("selected")
+	function produceChartInit(){
 		produceChart.clear()
 		produceChart.setOption({
 			color: ["rgb(18,250,110)","rgb(255,68,69)", "rgb(255,230,68)", , "rgb(18,248,209)", "rgb(19,182,250)", "rgb(19,84,250)",
@@ -262,7 +365,7 @@ $(function(){
 						}
 					},
 					type: 'category',
-					data: ['先进装备制造', '优质烟酒', '生态特色食品', '战略新兴'],
+					data: names_produce,
 					axisPointer: {
 						type: 'shadow'
 					},
@@ -302,108 +405,16 @@ $(function(){
 				{
 					name: '产值',
 					type: 'bar',
-					data: [30.54, 46.11, 1.94, 44.38],
+					data: datas_produce,
 					barWidth: 15
 				}
 			]
 		}, true);
-	})
-	
-	$("#produceYear").on("click", function(){
-		$("#produceYear").addClass("selected");
-		$("#produceSeanson").removeClass("selected")
-		produceChart.clear()
-		produceChart.setOption({
-			color: ["rgb(18,250,110)","rgb(255,68,69)", "rgb(255,230,68)", , "rgb(18,248,209)", "rgb(19,182,250)", "rgb(19,84,250)",
-				"rgb(61,18,248)", "rgb(121,20,249)", "rgb(224,19,249)", "rgb(249,17,226)", 
-				"rgb(255,157,69)", "rgb(257,116,69)"
-			],
-			grid: {
-				left: '2%',
-				right: '2%',
-				bottom: '12%',
-				top: '12%',
-				containLabel: true
-			},
-			tooltip: {
-				trigger: 'axis',
-				axisPointer: {
-					type: 'cross',
-					crossStyle: {
-						color: '#999'
-					}
-				}
-			},
-			xAxis: [
-				{
-					axisLine: {
-						onZero: false,
-						lineStyle: {
-							color: 'rgb(19,182,250)'
-						}
-					},
-					axisTick: {
-						show: false,
-						lineStyle:{
-							color: 'rgb(19,182,250)'
-						}
-					},
-					type: 'category',
-					data: ['先进装备制造', '优质烟酒', '生态特色食品', '战略新兴'],
-					axisPointer: {
-						type: 'shadow'
-					},
-					axisLabel: {
-					  interval: 0,
-					  rotate: 0,
-					  align: 'center',
-					  margin: 15
-					}
-				}
-			],
-			yAxis: [
-				{
-					axisLine: {
-						onZero: false,
-						lineStyle: {
-							color: 'rgb(255,230,68)'
-						}
-					},
-					splitLine: {
-						lineStyle: {
-							color: 'rgb(255,157,69)'
-						}
-					},
-					type: 'value',
-					name: '产值(亿)',
-					min: null,
-					max: 150,
-					interval: 25,
-					offset: 0,
-					axisLabel: {
-						formatter: '{value}'
-					}
-				}
-			],
-			series: [
-				{
-					name: '产值',
-					type: 'bar',
-					data: [97.54, 100.82, 5.93, 121.49],
-					barWidth: 15
-				}
-			]
-		}, true);
-	})
-	$("#produceSeanson").click();
-	
+	}
 
 	//产值构成
 	var produceAddChart = echarts.init(document.getElementById('produceAddChart'), 'shine');
-	
-	$("#produceAddYear").on("click", function(){
-		$("#produceAddYear").addClass("selected");
-		$("#produceAddSeanson").removeClass("selected")
+	function produceAddChartInit(){
 		produceAddChart.clear()
 		produceAddChart.setOption({
 			color: ["rgb(18,250,110)","rgb(255,68,69)", "rgb(255,230,68)", , "rgb(18,248,209)", "rgb(19,182,250)", "rgb(19,84,250)",
@@ -441,7 +452,7 @@ $(function(){
 						}
 					},
 					type: 'category',
-					data: ['先进装备制造', '优质烟酒', '生态特色食品', '战略新兴'],
+					data: names_produce,
 					axisPointer: {
 						type: 'shadow'
 					},
@@ -481,107 +492,16 @@ $(function(){
 				{
 					name: '增加值',
 					type: 'bar',
-					data: [17.12, 89.47, 1, 29.78],
+					data: datas_produceAdd,
 					barWidth: 15
 				}
 			]
 		});
-	})
-	
-	$("#produceAddSeanson").on("click", function(){
-		$("#produceAddSeanson").addClass("selected");
-		$("#produceAddYear").removeClass("selected")
-		produceAddChart.clear()
-		produceAddChart.setOption({
-			color: ["rgb(18,250,110)","rgb(255,68,69)", "rgb(255,230,68)", , "rgb(18,248,209)", "rgb(19,182,250)", "rgb(19,84,250)",
-				"rgb(61,18,248)", "rgb(121,20,249)", "rgb(224,19,249)", "rgb(249,17,226)", 
-				"rgb(255,157,69)", "rgb(257,116,69)"
-			],
-			grid: {
-				left: '2%',
-				right: '2%',
-				bottom: '12%',
-				top: '12%',
-				containLabel: true
-			},
-			tooltip: {
-				trigger: 'axis',
-				axisPointer: {
-					type: 'cross',
-					crossStyle: {
-						color: '#999'
-					}
-				}
-			},
-			xAxis: [
-				{
-					axisLine: {
-						onZero: false,
-						lineStyle: {
-							color: 'rgb(19,182,250)'
-						}
-					},
-					axisTick: {
-						show: false,
-						lineStyle:{
-							color: 'rgb(19,182,250)'
-						}
-					},
-					type: 'category',
-					data: ['先进装备制造', '优质烟酒', '生态特色食品', '战略新兴'],
-					axisPointer: {
-						type: 'shadow'
-					},
-					axisLabel: {
-					  interval: 0,
-					  rotate: 0,
-					  align: 'center',
-					  margin: 15
-					}
-				}
-			],
-			yAxis: [
-				{
-					axisLine: {
-						onZero: false,
-						lineStyle: {
-							color: 'rgb(255,230,68)'
-						}
-					},
-					splitLine: {
-						lineStyle: {
-							color: 'rgb(255,157,69)'
-						}
-					},
-					type: 'value',
-					name: '产值(亿)',
-					min: null,
-					max: 150,
-					interval: 25,
-					offset: 0,
-					axisLabel: {
-						formatter: '{value}'
-					}
-				}
-			],
-			series: [
-				{
-					name: '增加值',
-					type: 'bar',
-					data: [5.5, 40.91, 0.36, 10.83],
-					barWidth: 15
-				}
-			]
-		});
-	})
-	$("#produceAddSeanson").click()
+	}
 	
 	//产值构成
 	var produceSpeedChart = echarts.init(document.getElementById('produceSpeedChart'), 'shine');
-	
-	$("#produceSpeedYear").on("click", function(){
-		$("#produceSpeedYear").addClass("selected");
-		$("#produceSpeedSeanson").removeClass("selected")
+	function produceSpeedChartInit(){
 		produceSpeedChart.clear()
 		produceSpeedChart.setOption({
 			color: ["rgb(18,250,110)","rgb(255,68,69)", "rgb(255,230,68)", , "rgb(18,248,209)", "rgb(19,182,250)", "rgb(19,84,250)",
@@ -619,7 +539,7 @@ $(function(){
 						}
 					},
 					type: 'category',
-					data: ['先进装备制造', '优质烟酒', '生态特色食品', '战略新兴'],
+					data: names_produce,
 					axisPointer: {
 						type: 'shadow'
 					},
@@ -657,104 +577,18 @@ $(function(){
 			],
 			series: [
 				{
-					name: '增加值',
-					type: 'line',
-					data: [3.49, 10.54, 29.33, -7.66]
-				}
-			]
-		});
-	})
-	
-	$("#produceSpeedSeanson").on("click", function(){
-		$("#produceSpeedSeanson").addClass("selected");
-		$("#produceSpeedYear").removeClass("selected")
-		produceSpeedChart.clear()
-		produceSpeedChart.setOption({
-			color: ["rgb(18,250,110)","rgb(255,68,69)", "rgb(255,230,68)", , "rgb(18,248,209)", "rgb(19,182,250)", "rgb(19,84,250)",
-				"rgb(61,18,248)", "rgb(121,20,249)", "rgb(224,19,249)", "rgb(249,17,226)", 
-				"rgb(255,157,69)", "rgb(257,116,69)"
-			],
-			grid: {
-				left: '2%',
-				right: '2%',
-				bottom: '12%',
-				top: '12%',
-				containLabel: true
-			},
-			tooltip: {
-				trigger: 'axis',
-				axisPointer: {
-					type: 'cross',
-					crossStyle: {
-						color: '#999'
-					}
-				}
-			},
-			xAxis: [
-				{
-					axisLine: {
-						onZero: false,
-						lineStyle: {
-							color: 'rgb(19,182,250)'
-						}
-					},
-					axisTick: {
-						show: false,
-						lineStyle:{
-							color: 'rgb(19,182,250)'
-						}
-					},
-					type: 'category',
-					data: ['先进装备制造', '优质烟酒', '生态特色食品', '战略新兴'],
-					axisPointer: {
-						type: 'shadow'
-					},
-					axisLabel: {
-					  interval: 0,
-					  rotate: 0,
-					  align: 'center',
-					  margin: 15
-					}
-				}
-			],
-			yAxis: [
-				{
-					axisLine: {
-						onZero: false,
-						lineStyle: {
-							color: 'rgb(255,230,68)'
-						}
-					},
-					splitLine: {
-						lineStyle: {
-							color: 'rgb(255,157,69)'
-						}
-					},
-					type: 'value',
 					name: '增速',
-					min: 0,
-					max: 60,
-					interval: 15,
-					offset: 0,
-					axisLabel: {
-						formatter: '{value}%'
-					}
-				}
-			],
-			series: [
-				{
-					name: '增加值',
 					type: 'line',
-					data: [50.82, 22.19, 25.2, 16.53]
+					data: datas_produceSpeed
 				}
 			]
 		});
-	})
-	$("#produceSpeedSeanson").click()
+	}
+	
+	$(".data_2021")[0].click()
 
 	//文字滚动
 	$('#FontScroll').FontScroll({time: 3000,num: 1});
-
 	setTimeout(function(){
 		
 		$('.progress').each(function(i,ele){
