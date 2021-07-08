@@ -98,7 +98,7 @@ $(function(){
 					"<span class=\"dateTypeChoose data_2020\" style=\"cursor: pointer;float: right;\" >" + data_2020.year + "</span>" +
 					"<span class=\"dateTypeChoose selected\" style=\"float: right;\">/</span>" +
 					"<span class=\"dateTypeChoose data_2019\" style=\"cursor: pointer;float: right;\" >" + data_2019.year + "</span>"
-		$("#main .itemTit").append(html);
+		$("#left .itemTit").append(html);
 	}
 	data_request();
 	
@@ -249,7 +249,6 @@ $(function(){
 	  });
 
 	//产值
-<<<<<<< HEAD
 	var names_produce = new Array();
 	var datas_produce = new Array();
 	var datas_produceAdd = new Array();
@@ -267,8 +266,8 @@ $(function(){
 		for(var i=0;i<items.length;i++){
 			var item = items[i]
 			names_produce.push(item.name)
-			datas_produce.push((item.value1/100000).toFixed(2))
-			datas_produceAdd.push((item.value2/100000).toFixed(2))
+			datas_produce.push(item.value1)
+			datas_produceAdd.push(item.value2)
 			datas_produceSpeed.push(item.value3)
 		}
 		$(".data_2021").addClass("selected");
@@ -291,8 +290,8 @@ $(function(){
 		for(var i=0;i<items.length;i++){
 			var item = items[i]
 			names_produce.push(item.name)
-			datas_produce.push((item.value1/100000).toFixed(2))
-			datas_produceAdd.push((item.value2/100000).toFixed(2))
+			datas_produce.push(item.value1)
+			datas_produceAdd.push(item.value2)
 			datas_produceSpeed.push(item.value3)
 		}
 		$(".data_2020").addClass("selected");
@@ -301,108 +300,6 @@ $(function(){
 		produceChartInit()
 		produceAddChartInit()
 		produceSpeedChartInit()
-=======
-	var produceChart = echarts.init(document.getElementById('produceChart'));
-	$("#produceSeanson").on("click", function(){
-		$("#produceSeanson").addClass("selected");
-		$("#produceYear").removeClass("selected")
-		produceChart.clear()
-		produceChart.setOption({
-			color: ["rgb(18,250,110)","rgb(255,68,69)", "rgb(255,230,68)", , "rgb(18,248,209)", "rgb(19,182,250)", "rgb(19,84,250)",
-				"rgb(61,18,248)", "rgb(121,20,249)", "rgb(224,19,249)", "rgb(249,17,226)", 
-				"rgb(255,157,69)", "rgb(257,116,69)"
-			],
-			grid: {
-				left: '2%',
-				right: '2%',
-				bottom: '12%',
-				top: '12%',
-				containLabel: true
-			},
-			tooltip: {
-				trigger: 'axis',
-				axisPointer: {
-					type: 'cross',
-					crossStyle: {
-						color: '#999'
-					}
-				}
-			},
-			xAxis: [
-				{
-					axisLine: {
-						onZero: false,
-						lineStyle: {
-							color: 'rgb(19,182,250)'
-						}
-					},
-					axisTick: {
-						show: false,
-						lineStyle:{
-							color: 'rgb(19,182,250)'
-						}
-					},
-					type: 'category',
-					data: ['先进装备制造', '优质烟酒', '生态特色食品', '战略新兴'],
-					axisPointer: {
-						type: 'shadow'
-					},
-					axisLabel: {
-					  interval: 0,
-					  rotate: 0,
-					  align: 'center',
-					  margin: 15
-					}
-				}
-			],
-			yAxis: [
-				{
-					axisLine: {
-						onZero: false,
-						lineStyle: {
-							color: 'rgb(255,230,68)'
-						}
-					},
-					splitLine: {
-						lineStyle: {
-							color: 'rgb(255,157,69)'
-						}
-					},
-					type: 'value',
-					name: '产值(亿)',
-					min: null,
-					max: 150,
-					interval: 25,
-					offset: 0,
-					axisLabel: {
-						formatter: '{value}'
-					}
-				}
-			],
-			series: [
-				{
-					name: '产值',
-					type: 'bar',
-					data: [30.54, 46.11, 1.94, 44.38],
-					barWidth: 15,
-					itemStyle:{
-						normal: {
-							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-								offset: 0,
-								color: 'rgb(18,250,110)'
-							}, {
-								offset: 0.5,
-								color: 'rgb(18,248,209)'
-							}, {
-								offset: 1,
-								color: 'rgb(19,182,250)'
-							}]),
-						}
-					}
-				}
-			]
-		}, true);
->>>>>>> 7dac3b7f0eae685b163952dde431d88289f49db0
 	})
 	
 	$(".data_2019").on("click", function(){
@@ -417,8 +314,8 @@ $(function(){
 		for(var i=0;i<items.length;i++){
 			var item = items[i]
 			names_produce.push(item.name)
-			datas_produce.push((item.value1/100000).toFixed(2))
-			datas_produceAdd.push((item.value2/100000).toFixed(2))
+			datas_produce.push(item.value1)
+			datas_produceAdd.push(item.value2)
 			datas_produceSpeed.push(item.value3)
 		}
 		$(".data_2019").addClass("selected");
@@ -494,11 +391,11 @@ $(function(){
 						}
 					},
 					type: 'value',
-					name: '产值(亿)',
-					min: null,
-					max: 150,
-					interval: 25,
-					offset: 0,
+					name: '产值(千)',
+					// min: null,
+					// max: 150,
+					// interval: 25,
+					// offset: 0,
 					axisLabel: {
 						formatter: '{value}'
 					}
@@ -508,11 +405,7 @@ $(function(){
 				{
 					name: '产值',
 					type: 'bar',
-<<<<<<< HEAD
 					data: datas_produce,
-					barWidth: 15
-=======
-					data: [97.54, 100.82, 5.93, 121.49],
 					barWidth: 15,
 					itemStyle:{
 						normal: {
@@ -528,7 +421,6 @@ $(function(){
 							}]),
 						}
 					}
->>>>>>> 7dac3b7f0eae685b163952dde431d88289f49db0
 				}
 			]
 		}, true);
@@ -536,115 +428,7 @@ $(function(){
 
 	//产值构成
 	var produceAddChart = echarts.init(document.getElementById('produceAddChart'), 'shine');
-<<<<<<< HEAD
 	function produceAddChartInit(){
-=======
-	
-	$("#produceAddYear").on("click", function(){
-		$("#produceAddYear").addClass("selected");
-		$("#produceAddSeanson").removeClass("selected")
-		produceAddChart.clear()
-		produceAddChart.setOption({
-			color: ["rgb(18,250,110)","rgb(255,68,69)", "rgb(255,230,68)", , "rgb(18,248,209)", "rgb(19,182,250)", "rgb(19,84,250)",
-				"rgb(61,18,248)", "rgb(121,20,249)", "rgb(224,19,249)", "rgb(249,17,226)", 
-				"rgb(255,157,69)", "rgb(257,116,69)"
-			],
-			grid: {
-				left: '2%',
-				right: '2%',
-				bottom: '12%',
-				top: '12%',
-				containLabel: true
-			},
-			tooltip: {
-				trigger: 'axis',
-				axisPointer: {
-					type: 'cross',
-					crossStyle: {
-						color: '#999'
-					}
-				}
-			},
-			xAxis: [
-				{
-					axisLine: {
-						onZero: false,
-						lineStyle: {
-							color: 'rgb(19,182,250)'
-						}
-					},
-					axisTick: {
-						show: false,
-						lineStyle:{
-							color: 'rgb(19,182,250)'
-						}
-					},
-					type: 'category',
-					data: ['先进装备制造', '优质烟酒', '生态特色食品', '战略新兴'],
-					axisPointer: {
-						type: 'shadow'
-					},
-					axisLabel: {
-					  interval: 0,
-					  rotate: 0,
-					  align: 'center',
-					  margin: 15
-					}
-				}
-			],
-			yAxis: [
-				{
-					axisLine: {
-						onZero: false,
-						lineStyle: {
-							color: 'rgb(255,230,68)'
-						}
-					},
-					splitLine: {
-						lineStyle: {
-							color: 'rgb(255,157,69)'
-						}
-					},
-					type: 'value',
-					name: '产值(亿)',
-					min: null,
-					max: 150,
-					interval: 25,
-					offset: 0,
-					axisLabel: {
-						formatter: '{value}'
-					}
-				}
-			],
-			series: [
-				{
-					name: '增加值',
-					type: 'bar',
-					data: [17.12, 89.47, 1, 29.78],
-					barWidth: 15,
-					itemStyle:{
-						normal: {
-							color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-								offset: 0,
-								color: 'rgb(18,250,110)'
-							}, {
-								offset: 0.5,
-								color: 'rgb(18,248,209)'
-							}, {
-								offset: 1,
-								color: 'rgb(19,182,250)'
-							}]),
-						}
-					}
-				}
-			]
-		});
-	})
-	
-	$("#produceAddSeanson").on("click", function(){
-		$("#produceAddSeanson").addClass("selected");
-		$("#produceAddYear").removeClass("selected")
->>>>>>> 7dac3b7f0eae685b163952dde431d88289f49db0
 		produceAddChart.clear()
 		produceAddChart.setOption({
 			color: ["rgb(18,250,110)","rgb(255,68,69)", "rgb(255,230,68)", , "rgb(18,248,209)", "rgb(19,182,250)", "rgb(19,84,250)",
@@ -708,11 +492,11 @@ $(function(){
 						}
 					},
 					type: 'value',
-					name: '产值(亿)',
-					min: null,
-					max: 150,
-					interval: 25,
-					offset: 0,
+					name: '产值(千)',
+					// min: null,
+					// max: 150,
+					// interval: 25,
+					// offset: 0,
 					axisLabel: {
 						formatter: '{value}'
 					}
@@ -722,11 +506,7 @@ $(function(){
 				{
 					name: '增加值',
 					type: 'bar',
-<<<<<<< HEAD
 					data: datas_produceAdd,
-					barWidth: 15
-=======
-					data: [5.5, 40.91, 0.36, 10.83],
 					barWidth: 15,
 					itemStyle:{
 						normal: {
@@ -742,7 +522,6 @@ $(function(){
 							}]),
 						}
 					}
->>>>>>> 7dac3b7f0eae685b163952dde431d88289f49db0
 				}
 			]
 		});

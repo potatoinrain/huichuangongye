@@ -238,7 +238,8 @@ body{
 }
 
 .left-box{
-	height: 30%;;
+	height: 31%;
+	box-sizing: border-box;
 }
 
 .waybill .progress{
@@ -293,7 +294,7 @@ body{
 
 #myMap{
 	height: 480px; border:2px dotted rgba(0,122,255,.25); overflow: hidden;
-	background: url(../images/hc_map.jpg) no-repeat;
+	background: url(../images/hc_map2.png) no-repeat;
 	background-size: 100% 100%;
 	
 }
@@ -2274,13 +2275,16 @@ body{
 	display: none!important;;
 } 
 .right-top{
-	height: 14%;
+	height: 19%;
+	box-sizing: border-box;
 }
 .right-center{
-	height: 27%;
+	height: 28%;
+	box-sizing: border-box;
 }
 .right-bottom{
-	height: 42%;
+	height: 46%;
+	box-sizing: border-box;
 }
 
 #stateUl{
