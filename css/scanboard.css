@@ -294,9 +294,12 @@ body{
 
 #myMap{
 	height: 480px; border:2px dotted rgba(0,122,255,.25); overflow: hidden;
-	background: url(../images/hc_map2.png) no-repeat;
+	background: url(../images/hc_map2_cut.png) no-repeat;
 	background-size: 100% 100%;
-	
+}
+.myMapImg {
+	width: 100%;
+	height: 100%;
 }
 #myMap .amap-info-content{
 	background: #00deff;
@@ -2350,13 +2353,10 @@ body{
 }
 
 .circle_1_desc{
-	width: 12.25rem;
-	height: 6.25rem;
-	line-height: 6.25rem;
-	position: absolute;
-	border-radius: 50%;
-	top: 12%;
-	left: 36%;
+	width: 34%;
+	height: 13%;
+	top: 34%;
+	left: 29%;
 }
 
 .circle_2{
@@ -2428,11 +2428,16 @@ body{
 }
 
 .circle_desc{
+	cursor: pointer;
+	position: absolute;
+	/* background: #00000055; */
+	
+	
 	/* color: rgb(249,17,226); */
 	font-weight: 600;
 	font-size: 16px;
 	color: #FFFFFF;
-	margin-left: 7rem
+	/* margin-left: 7rem */
 }
 .circle_desc .circle_wrap{
 	background: #e6f1ff;
