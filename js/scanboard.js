@@ -1487,4 +1487,53 @@ $(function(){
 		    }
 		});
 	}
+	
+	var scale = 1;
+	//鼠标滚轮放大缩小地图
+	$('.mapContainer').on('mousewheel', function(event) {
+	    var y = event.deltaY;
+		scale += y*0.2;
+		$("#myMap").css({'transform': 'scale('+scale+', '+scale+') translate('+lastXY.marginLeft + 'px,'+lastXY.marginTop+'px)'})
+	});
+	
+	//鼠标拖拽地图
+	var lastXY = {x:null, y:null, marginLeft: 0, marginTop: 0};
+	var monsedown = false;
+	$('.mapContainer').on('mousedown', function(event) {
+		monsedown = true;
+		lastXY.x = null;
+		lastXY.y = null;
+	});
+	$(document).on('mouseup', function(event) {
+		monsedown = false;
+		lastXY.x = null;
+		lastXY.y = null;
+		event.stopPropagation()
+		return false;
+	})
+	$('.mapContainer').on('mousemove', function(event) {
+		if(!monsedown)
+			return;
+		if(lastXY.x === null) {
+			lastXY.x = event.pageX
+			lastXY.y = event.pageY
+		} else {
+			var x = event.pageX - lastXY.x;
+			var y = event.pageY - lastXY.y;
+			lastXY.x = event.pageX
+			lastXY.y = event.pageY
+			lastXY.marginLeft = lastXY.marginLeft + x/scale;
+			lastXY.marginTop = lastXY.marginTop + y/scale;
+			$("#myMap").css({'transform': 'scale('+scale+', '+scale+') translate('+lastXY.marginLeft + 'px,'+lastXY.marginTop+'px)'})
+		}
+	});
+	
+	$(document).on('keyup', function(event) {
+		if(event.keyCode == '66') {
+			scale = 1;
+			lastXY.marginLeft = 0;
+			lastXY.marginTop = 0;
+			$("#myMap").css({'transform': 'scale('+scale+', '+scale+') translate('+lastXY.marginLeft + 'px,'+lastXY.marginTop+'px)'})
+		}
+	});
 });
